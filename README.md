@@ -12,4 +12,4 @@ I build the internal systems, applications, and AI-powered workflows that make g
 
 **Featured**: [GTM Context Engine](https://github.com/josephdeville/ClaudeGTM) · [Portfolio](https://josephdeville.github.io)
 
-📫 joseph.deville@cloudanditservices.com · [LinkedIn](https://www.linkedin.com/in/joseph-deville/)
+📫 josephdeville523@gmail.com · [LinkedIn](https://www.linkedin.com/in/joseph-deville/)
