@@ -1,6 +1,6 @@
 ## Joseph DeVille, GTM Engineer
 
-I build the internal systems that go-to-market teams run on. Not CRM configuration: TypeScript services, AI agents against live revenue data, and the guardrails that let both run unattended.
+I build the internal systems that go-to-market teams run on. Not just CRM configuration: TypeScript services, AI agents against live revenue data, and the guardrails that let both run unattended.
 
 Most recently the in-house GTM Engineer at Cortex, where the systems I shipped were credited with influencing $1.57M in pipeline.
 
