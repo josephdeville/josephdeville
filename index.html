@@ -3,78 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joseph DeVille — Foley GTM FDE Portfolio</title>
-  <meta name="description" content="GTM engineering portfolio for Foley GTM Forward Deployed Engineer — agents, signals, outbound, deliverability.">
+  <title>Joseph DeVille | Foley GTM FDE</title>
+  <meta name="description" content="Working GTM prototypes for Foley: Deep Research + Hermes, account briefs, forecast evidence, signal engines. $1.57M pipeline, 17 Cortex builds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root {
+      --bg: #07080c;
+      --bg-2: #0e1118;
+      --card: #12151d;
+      --line: rgba(255,255,255,.08);
+      --text: #f4f1ea;
+      --muted: #9aa3ad;
       --orange: #EF9648;
-      --dark: #0F364A;
-      --blue: #2256C7;
-      --bg: #FAFAF7;
-      --muted: #6B7A82;
-      --border: #E5E0D8;
+      --teal: #33B7A8;
+      --blue: #6ea8ff;
     }
-    body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.55; }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 64px; }
-    h1 { font-size: 1.75rem; margin: 0 0 8px; }
-    .tag { color: var(--orange); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .lead { color: var(--muted); font-size: 1.05rem; max-width: 38em; }
-    .cta {
-      display: inline-block; margin: 24px 0; padding: 14px 22px;
-      background: var(--dark); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
     }
-    .cta:hover { background: var(--blue); }
-    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 20px 0; }
-    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-    a { color: var(--blue); }
-    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+    a { color: inherit; }
+    .glow {
+      pointer-events: none;
+      position: fixed;
+      inset: -20% 0 auto;
+      height: 52vh;
+      background:
+        radial-gradient(60% 80% at 50% 0%, rgba(124, 58, 237, .35), transparent 70%),
+        radial-gradient(40% 50% at 80% 10%, rgba(239, 150, 72, .18), transparent 60%);
+      z-index: 0;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 28px;
+      background: rgba(7,8,12,.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.35rem;
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 22px; font-size: .9rem; color: var(--muted); }
+    nav a { text-decoration: none; }
+    nav a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--text);
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+    main { position: relative; z-index: 1; }
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 72px 24px 28px;
+      text-align: center;
+    }
+    .kicker {
+      color: var(--orange);
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .72rem;
+    }
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      line-height: 1.05;
+      margin: 16px 0 12px;
+    }
+    h1 em { font-style: italic; color: #ddd6fe; }
+    .lead {
+      color: var(--muted);
+      max-width: 38rem;
+      margin: 0 auto 28px;
+      font-size: 1.05rem;
+    }
+    .actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    .btn-primary { background: var(--text); color: #111; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.28); }
+    .fan {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 1080px;
+      margin: 48px auto 0;
+      padding: 0 24px 8px;
+    }
+    .tile {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      text-decoration: none;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      transform: rotate(var(--tilt, 0deg));
+      box-shadow: 0 20px 40px rgba(0,0,0,.35);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .tile:hover { transform: rotate(0deg) translateY(-6px); border-color: rgba(239,150,72,.4); }
+    .tile:nth-child(1) { --tilt: -4deg; }
+    .tile:nth-child(2) { --tilt: -1.5deg; }
+    .tile:nth-child(3) { --tilt: 1deg; }
+    .tile:nth-child(4) { --tilt: 3.5deg; }
+    .tile:nth-child(5) { --tilt: -2deg; }
+    .tile-top {
+      flex: 1;
+      padding: 16px;
+      background:
+        linear-gradient(160deg, rgba(239,150,72,.22), transparent 55%),
+        var(--bg-2);
+    }
+    .tile-top.hermes { background: linear-gradient(160deg, rgba(51,183,168,.28), #152028); }
+    .tile-top.brief { background: linear-gradient(160deg, rgba(110,168,255,.28), #141a28); }
+    .tile-top.forecast { background: linear-gradient(160deg, rgba(124,58,237,.32), #16121f); }
+    .tile-top.signal { background: linear-gradient(160deg, rgba(239,150,72,.2), #1b1610); }
+    .tile-top.git { background: linear-gradient(160deg, rgba(255,255,255,.08), #121212); }
+    .chip {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,.35);
+      border: 1px solid var(--line);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .tile h3 { margin: 12px 0 0; font-size: 1.05rem; }
+    .tile p { margin: 0; padding: 12px 16px 16px; color: var(--muted); font-size: .82rem; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 1080px;
+      margin: 48px auto 0;
+      padding: 0 24px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(18,21,29,.7);
+    }
+    .metric b { display: block; font-size: 1.6rem; font-family: "Instrument Serif", Georgia, serif; }
+    .metric span { color: var(--muted); font-size: .88rem; }
+    section { max-width: 1080px; margin: 0 auto; padding: 72px 24px 0; }
+    section h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+    .sub { color: var(--muted); margin: 0 0 28px; max-width: 40rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      text-decoration: none;
+      display: block;
+    }
+    .card.span { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr .8fr; gap: 16px; align-items: center; }
+    .card h3 { margin: 8px 0 8px; }
+    .card p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .tag {
+      color: var(--teal);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .live { color: var(--orange); font-weight: 600; font-size: .85rem; }
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .stack span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    footer {
+      max-width: 1080px;
+      margin: 72px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer a { color: var(--blue); }
+    @media (max-width: 900px) {
+      .fan, .grid, .metrics, .card.span { grid-template-columns: 1fr 1fr; }
+      .tile:nth-child(5) { display: none; }
+      nav { display: none; }
+    }
+    @media (max-width: 640px) {
+      .fan, .grid, .metrics { grid-template-columns: 1fr; }
+      .tile { transform: none; min-height: 160px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <p class="tag">Foley · GTM Forward Deployed Engineer</p>
-    <h1>Joseph DeVille</h1>
-    <p class="lead">GTM engineer: signal feeds, research agents, personalized outbound, and deliverability—measured in pipeline, not activity. Cortex ($1.57M influenced pipeline, 17 builds) · consulting (Anchor, Crux).</p>
+  <div class="glow" aria-hidden="true"></div>
+  <header>
+    <a class="brand" href="./">Joseph DeVille</a>
+    <nav>
+      <a href="#prototypes">Prototypes</a>
+      <a href="./demo/">Demo</a>
+      <a href="#stack">Stack</a>
+      <a href="https://github.com/josephdeville">GitHub</a>
+    </nav>
+    <a class="nav-cta" href="./demo/">Open Hermes</a>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="kicker">Foley · GTM Forward Deployed Engineer · CAIO Misha</p>
+      <h1>Working prototypes,<br><em>not a brochure.</em></h1>
+      <p class="lead">Signal feeds, research agents, personalized outbound, and deliverability for fleet compliance GTM. Cortex: $1.57M pipeline influence. Click the builds.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="./demo/">Open Deep Research + Hermes</a>
+        <a class="btn btn-ghost" href="https://github.com/josephdeville">GitHub</a>
+      </div>
+    </section>
 
-    <a class="cta" href="./demo/index.html">Open interactive demo →</a>
+    <div class="fan" aria-label="Featured prototypes">
+      <a class="tile" href="./demo/">
+        <div class="tile-top hermes"><span class="chip">Live</span><h3>Hermes</h3></div>
+        <p>Research packet → persona → close plan → learning variants.</p>
+      </a>
+      <a class="tile" href="https://jd-sanity-gtm-brief.netlify.app/" rel="noopener">
+        <div class="tile-top brief"><span class="chip">Live</span><h3>Account briefs</h3></div>
+        <p>Eval-gated Sanity queue. GROQ is public.</p>
+      </a>
+      <a class="tile" href="https://forecast-evidence-engine.vercel.app/" rel="noopener">
+        <div class="tile-top forecast"><span class="chip">Live</span><h3>Forecast evidence</h3></div>
+        <p>Commit vs evidence-adjusted Commit.</p>
+      </a>
+      <a class="tile" href="https://planitroi-itad-signal-engine-hp.vercel.app/" rel="noopener">
+        <div class="tile-top signal"><span class="chip">Live</span><h3>Signal engines</h3></div>
+        <p>Public signals → who may act next.</p>
+      </a>
+      <a class="tile" href="https://github.com/josephdeville" rel="noopener">
+        <div class="tile-top git"><span class="chip">Code</span><h3>GitHub</h3></div>
+        <p>The whole profile is the portfolio.</p>
+      </a>
+    </div>
 
-    <table>
-      <thead>
-        <tr><th>Build</th><th>Outcome</th><th>More</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Deep Research + Hermes</td>
-          <td>Learning outbound + pre-call intelligence</td>
-          <td><a href="./demo/index.html">Demo</a></td>
-        </tr>
-        <tr>
-          <td>Signal-driven BDR feed</td>
-          <td>10,000+ leads scored</td>
-          <td><a href="./case-studies/02-cortex-signal-driven-bdr-feed.md">Case study</a></td>
-        </tr>
-        <tr>
-          <td>Anchor / Crux outbound</td>
-          <td>Kill rules, self-sourced pipeline</td>
-          <td><a href="./case-studies/04-anchor-browser-crux-outbound.md">Case study</a></td>
-        </tr>
-        <tr>
-          <td>Deliverability stack</td>
-          <td>40% bounce reduction</td>
-          <td><a href="./case-studies/03-rainforest-qa-deliverability.md">Case study</a></td>
-        </tr>
-        <tr>
-          <td>GTM account intelligence</td>
-          <td>Eval-gated rep queue</td>
-          <td><a href="https://jd-sanity-gtm-brief.netlify.app" rel="noopener">Live</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="metrics">
+      <div class="metric"><b>$1.57M</b><span>pipeline influence at Cortex</span></div>
+      <div class="metric"><b>17</b><span>Cortex GTM builds shipped</span></div>
+      <div class="metric"><b>10k+</b><span>leads scored on the BDR feed</span></div>
+    </div>
 
-    <p><a href="./README.md">Full README</a> · <a href="https://github.com/josephdeville/ai-sdr-engine">ai-sdr-engine</a> · <a href="mailto:joseph.deville@cloudanditservices.com">Email</a> · <a href="https://www.linkedin.com/in/joseph-deville/">LinkedIn</a></p>
+    <section id="prototypes">
+      <h2>Click these first</h2>
+      <p class="sub">Same loop Foley wants in 90 days: research on a booking-style trigger, signal feeds, measure pipeline, ship-measure-iterate.</p>
+      <div class="grid">
+        <a class="card span" href="./demo/">
+          <div>
+            <div class="tag">Lead demo</div>
+            <h3>Deep Research + Hermes</h3>
+            <p>Three-prospect walkthrough: packet, persona, close plan, Hermes variants, simulated learning. Static on purpose. No public LLM. Path stays /demo/.</p>
+            <p class="live">josephdeville.com/demo/</p>
+          </div>
+          <div>
+            <p>Prospect 2 is a consensus, risk-aware buyer in a regulated firm. Analog for fleet compliance committees.</p>
+          </div>
+        </a>
+        <a class="card" href="https://jd-sanity-gtm-brief.netlify.app/" rel="noopener">
+          <div class="tag">Account research</div>
+          <h3>GTM account intelligence</h3>
+          <p>Live Sanity Content Lake briefs, eval-gated before the rep queue.</p>
+        </a>
+        <a class="card" href="https://forecast-evidence-engine.vercel.app/" rel="noopener">
+          <div class="tag">Measure pipeline</div>
+          <h3>Forecast Evidence Engine</h3>
+          <p>Interactive CRO view: claimed Commit vs evidence. Synthetic data.</p>
+        </a>
+        <a class="card" href="https://neo-signal-engine.vercel.app/" rel="noopener">
+          <div class="tag">Signals</div>
+          <h3>Neo + ITAD engines</h3>
+          <p>Hiring and refresh signals scored into a queue. Foley analog: DOT authority, fleet growth, renewals.</p>
+        </a>
+        <a class="card" href="https://github.com/josephdeville/ai-sdr-engine" rel="noopener">
+          <div class="tag">Clone and run</div>
+          <h3>ai-sdr-engine</h3>
+          <p>Public sibling to Cortex Hermes: research, HITL, reply class. DRY_RUN=1.</p>
+        </a>
+        <a class="card" href="./README.md">
+          <div class="tag">Case studies</div>
+          <h3>Five Foley-mapped builds</h3>
+          <p>Hermes, BDR feed, outbound kill rules, 40% bounce drop, operating principles.</p>
+        </a>
+      </div>
+    </section>
 
-    <footer>Built for conversation with Misha Sulpovar / Foley CAIO team.</footer>
-  </div>
+    <section id="stack">
+      <h2>Stack and story</h2>
+      <p class="sub">TypeScript and Python in production GTM systems. Not a slide deck of logos.</p>
+      <div class="stack">
+        <span>TypeScript</span>
+        <span>Python</span>
+        <span>LangChain</span>
+        <span>Crew AI</span>
+        <span>LangFuse</span>
+        <span>Clay</span>
+        <span>Salesforce</span>
+        <span>17 Cortex builds</span>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>Joseph DeVille · Houston · Foley GTM FDE package. Demo stays at /demo/.</div>
+    <div>
+      <a href="mailto:joseph.deville@cloudanditservices.com">Email</a>
+      · <a href="https://www.linkedin.com/in/joseph-deville/">LinkedIn</a>
+      · <a href="https://github.com/josephdeville/foley-portfolio">Repo</a>
+    </div>
+  </footer>
 </body>
 </html>
