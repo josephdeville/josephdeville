@@ -1,0 +1,58 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable Pages, custom domain, HTTPS
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          echo "POST enable workflow Pages"
+          gh api --method POST /repos/${{ github.repository }}/pages \
+            -f build_type=workflow
+          echo "PUT cname + https_enforced"
+          gh api --method PUT /repos/${{ github.repository }}/pages \
+            -f cname='josephdeville.com' \
+            -F https_enforced=true \
+            -f build_type=workflow
+          echo "GET pages"
+          gh api /repos/${{ github.repository }}/pages
+          echo "GET health"
+          gh api /repos/${{ github.repository }}/pages/health
+          sleep 8
+          gh api /repos/${{ github.repository }}/pages/health
+          echo "Domain endpoint probes"
+          gh api /user/pages/domains
+          gh api /repos/${{ github.repository }}/pages/domains
+          set -e
+
+  deploy:
+    needs: configure
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
