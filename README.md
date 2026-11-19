@@ -39,4 +39,4 @@ HubSpot, Salesforce, Clay, Apollo, LinkedIn Sales Navigator, Python, TypeScript,
 
 ### Contact
 
-[Portfolio](https://josephdeville.github.io) · [LinkedIn](https://www.linkedin.com/in/joseph-deville/) · josephdeville523@gmail.com
+[Portfolio](https://josephdeville.com) · [LinkedIn](https://www.linkedin.com/in/joseph-deville/) · josephdeville523@gmail.com
